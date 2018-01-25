@@ -54,11 +54,72 @@
       Start code
 
       ===================== */
-
+      //Part 1
+      //Create a function to return input
       var jsonToCsv = function(json) { console.log(json); };
 
+      //Create Empty arrays
+      var arrayLNG = [];
+      var arrayLAT = [];
+      var arrayOBJ = [];
+      var arrayNAM = [];
+      var arrayORG = [];
+      var arrayPHO = [];
+      var arrayZIP = [];
+      var arrayWEB = [];
+      var arrayDEN = [];
+      var arrayADD = [];
 
-      var addMarkers = function(map) {};
+      //Loop through all arrays
+      for (i = 0; i < healthCenters.length; i++) {
+        arrayLNG[i] = healthCenters[i].LNG;
+        arrayLAT[i] = healthCenters[i].LAT;
+        arrayOBJ[i] = healthCenters[i].OBJECTID;
+        arrayNAM[i] = healthCenters[i].NAME;
+        arrayORG[i] = healthCenters[i].ORGANIZATION;
+        arrayPHO[i] = healthCenters[i].PHONE;
+        arrayZIP[i] = healthCenters[i].ZIP;
+        arrayWEB[i] = healthCenters[i].WEBSITE;
+        arrayDEN[i] = healthCenters[i].DENTAL_PHONE;
+        arrayADD[i] = healthCenters[i].FULL_ADDRESS;
+      }
+
+      //Execute functions
+      jsonToCsv(arrayLNG);
+      jsonToCsv(arrayLAT);
+      jsonToCsv(arrayOBJ);
+      jsonToCsv(arrayNAM);
+      jsonToCsv(arrayORG);
+      jsonToCsv(arrayPHO);
+      jsonToCsv(arrayZIP);
+      jsonToCsv(arrayWEB);
+      jsonToCsv(arrayDEN);
+      jsonToCsv(arrayADD);
+
+      //Part 2
+      //Create a dentist icon
+      var myIcon = L.icon({
+        iconUrl: 'https://www.shareicon.net/data/2017/05/06/885646_service_512x512.png',
+        iconSize: [15, 30],
+        iconAnchor: [22, 94],
+        popupAnchor: [-3, -76],
+        shadowSize: [68, 95],
+        shadowAnchor: [22, 94]
+      });
+
+
+      //Add markers
+      var addMarkers = function(map) {
+        for(i=0; i<healthCenters.length; i++){
+          if(healthCenters[i].DENTAL_PHONE === "N/A"){
+            L.marker([healthCenters[i].LAT, healthCenters[i].LNG]).addTo(map).bindPopup(healthCenters[i].NAME);
+          }
+          else {
+            L.marker([healthCenters[i].LAT, healthCenters[i].LNG], {icon: myIcon}).addTo(map).bindPopup(healthCenters[i].NAME);
+          }
+        }
+      };
+      addMarkers(map);
 
       /* =====================
 
