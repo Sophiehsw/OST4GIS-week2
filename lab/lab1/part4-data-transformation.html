@@ -51,15 +51,17 @@
 
     ===================== */
 
-    var data = bikeArrayClean;
-
     /* =====================
 
     Start code to filter data
 
     ===================== */
-
-
+    var data = bikeArrayClean;
+        var dataFiltered = [];
+    for (var i = 0; i < bikeArrayClean.length;i++){
+      if ( bikeArrayClean[i][3] > 20 )
+          console.log( dataFiltered.push(bikeArrayClean[i]) );
+    }
 
     /* =====================
 
@@ -85,8 +87,9 @@
     Start code to add markers to map
 
     ===================== */
-
-
+    for (var i = 0; i < dataFiltered.length;i++){
+      L.marker([dataFiltered[i][1],dataFiltered[i][0]]).addTo(map)
+    }
 
     /* =====================
 

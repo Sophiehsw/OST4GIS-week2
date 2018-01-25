@@ -62,10 +62,10 @@
     Start code
 
     ===================== */
-
-    L.marker([0, 0]).addTo(map);
-    L.marker([0, 0]).addTo(map);
-    L.marker([0, 0]).addTo(map);
+    let restaurantData = [[39.950287, -75.166575, 'Oyster House'], [39.960043, -75.190688, 'Sabrina'], [39.953827, -75.157116, 'Little Sheep'], [39.955398, -75.156786, "DimSum Garden"], [39.950522, -75.169206, 'Lukes Lobster']];
+    for (i = 0; i <= restaurantData.length; i = i + 1){
+      L.marker([restaurantData[i][0], restaurantData[i][1]]).addTo(map).bindPopup(restaurantData[i][2]);
+    }
 
     /* =====================
 
